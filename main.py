@@ -32,6 +32,12 @@ def home():
 {}
 </div>
 """.format(m.content.replace('<', '&lt;').replace('>', '&gt;'))
+# The XSS attack relied on the use of control characters. In this case, the control characters were for HTML: the
+# greater than (>) and less than (<) or angle bracket characters. By replacing these with equivalent HTML escape
+# sequences, we were able to render the submitted text of an attacker's message without allowing them to insert
+# JavaScript code into the page.
+# There are more HTML control characters than just the angle brackets. The best practice to use when rendering user-
+# submitted content into an HTML page is to sanitize that content with the html.escape method.
 
     return body 
 
